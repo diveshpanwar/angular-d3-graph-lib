@@ -6,5 +6,18 @@
 */
 {
   "files": [],
-  "references": []
+  "references": [
+    {
+      "path": "./projects/angular-d3-graph-lib/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/angular-d3-graph-lib/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/angular-d3-graph-test/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/angular-d3-graph-test/tsconfig.spec.json"
+    }
+]
 }
