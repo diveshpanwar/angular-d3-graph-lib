@@ -1,24 +1,17 @@
-# AngularD3GraphLib
+# AngularD3Graphs
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.6.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.4.
 
-## Code scaffolding
+## Dependencies
+* d3: ^5.16.0,
+* @types/d3: ^5.7.2
 
-Run `ng generate component component-name --project angular-d3-graph-lib` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project angular-d3-graph-lib`.
-> Note: Don't forget to add `--project angular-d3-graph-lib` or else it will be added to the default project in your `angular.json` file. 
 
-## Build
-
-Run `ng build angular-d3-graph-lib` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Publishing
-
-After building your library with `ng build angular-d3-graph-lib`, go to the dist folder `cd dist/angular-d3-graph-lib` and run `npm publish`.
-
-## Running unit tests
-
-Run `ng test angular-d3-graph-lib` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## HEAT MAP <lib-heat-map>
+This component will generate a heat map. It has following properties:
+* url [Input: string] : The url to a csv file, can be remote or local
+* description [Input: string] : The description to show on the heat map
+* title [Input: string] : the title of the heat map
+* margin [Input: objet] : the margins for the svg heat map, default { top: 80, right: 25, bottom: 30, left: 40 };
+* width [Input: number] : the width of the heat map
+* height [Input: number] : the height of the heat map
