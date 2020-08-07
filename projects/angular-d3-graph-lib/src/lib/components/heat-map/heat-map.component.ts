@@ -13,12 +13,10 @@ export class HeatMapComponent implements OnInit {
   @Input() url: string;
   @Input() description: string;
   @Input() title: string;
-
+  @Input() margin: any;
+  @Input() width: number;
+  @Input() height: number;
   svg = null;
-  margin = { top: 80, right: 25, bottom: 30, left: 40 };
-  width = 450 - this.margin.left - this.margin.right;
-  height = 450 - this.margin.top - this.margin.bottom;
-
 
   ngOnInit(): void {
   }
@@ -122,31 +120,37 @@ export class HeatMapComponent implements OnInit {
 
 
       // Add title to graph
-      this.svg.append('text')
-        .attr('x', 0)
-        .attr('y', -50)
-        .attr('text-anchor', 'center')
-        .style('font-size', '22px')
-        .text(this.title);
+      if (this.title) {
+        this.svg.append('text')
+          .attr('x', 0)
+          .attr('y', -50)
+          .attr('text-anchor', 'center')
+          .style('font-size', '22px')
+          .text(this.title);
+      }
 
       // Add subtitle to graph
-      this.svg.append('text')
-        .attr('x', 0)
-        .attr('y', -20)
-        .attr('text-anchor', 'center')
-        .style('font-size', '14px')
-        .style('fill', 'grey')
-        .style('max-width', 400)
-        .text(this.description);
-
+      if (this.description) {
+        this.svg.append('text')
+          .attr('x', 0)
+          .attr('y', -20)
+          .attr('text-anchor', 'center')
+          .style('font-size', '14px')
+          .style('fill', 'grey')
+          .style('max-width', 400)
+          .text(this.description);
+      }
     });
 
   }
 
   private checkInputs(): void {
-    this.description = this.description ? this.description : 'HEAT MAP DESCRIPTION';
-    this.title = this.title ? this.title : 'HEAT MAP TITLE';
+    this.description = this.description ? this.description : null;
+    this.title = this.title ? this.title : null;
     this.url = this.url ? this.url : 'https://raw.githubusercontent.com/diveshpanwar/d3-graph-data/master/heat-map.csv';
+    this.margin = this.margin ? this.margin : { top: 80, right: 25, bottom: 30, left: 40 };
+    this.width = this.width ? this.width : 450 - this.margin.left - this.margin.right;
+    this.height = this.height ? this.height : 450 - this.margin.top - this.margin.bottom;
   }
 
 }
