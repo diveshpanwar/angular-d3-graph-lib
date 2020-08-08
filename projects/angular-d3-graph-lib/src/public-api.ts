@@ -7,3 +7,4 @@ export * from './lib/angular-d3-graph-lib.component';
 export * from './lib/angular-d3-graph-lib.module';
 
 export * from './lib/components/heat-map/heat-map.component';
+export * from './lib/components/bar-chart/bar-chart.component';

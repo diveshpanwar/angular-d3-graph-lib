@@ -16,6 +16,9 @@ export class HeatMapComponent implements OnInit {
   @Input() margin: any;
   @Input() width: number;
   @Input() height: number;
+  @Input() groupColumnName: string;
+  @Input() variableColumnName: string;
+  @Input() valueColumnName: string;
   svg = null;
 
   ngOnInit(): void {
@@ -35,8 +38,8 @@ export class HeatMapComponent implements OnInit {
     this.checkInputs();
     d3.csv(this.url).then(data => {
       // Labels of row and columns -> unique identifier of the column called 'group' and 'variable'
-      const myGroups = d3.map(data, (d) => d.group).keys();
-      const myVars = d3.map(data, (d) => d.variable).keys();
+      const myGroups = d3.map(data, (d) => d[this.groupColumnName]).keys();
+      const myVars = d3.map(data, (d) => d[this.variableColumnName]).keys();
 
       // Build X scales and axis:
       const x = d3.scaleBand()
@@ -85,9 +88,10 @@ export class HeatMapComponent implements OnInit {
           .style('opacity', 1);
       };
 
+      const valueColumn = this.valueColumnName;
       const mousemove = function (d) {
         tooltip
-          .html('Value: ' + d.value)
+          .html('Value: ' + d[valueColumn])
           .style('left', (d3.mouse(this)[0] + 70) + 'px')
           .style('top', (d3.mouse(this)[1]) + 'px');
       };
@@ -101,11 +105,11 @@ export class HeatMapComponent implements OnInit {
       };
 
       this.svg.selectAll()
-        .data(data, (d) => d.group + ':' + d.variable)
+        .data(data, (d) => d[this.groupColumnName] + ':' + d[this.variableColumnName])
         .enter()
         .append('rect')
-        .attr('x', (d) => x(d.group))
-        .attr('y', (d) => y(d.variable))
+        .attr('x', (d) => x(d[this.groupColumnName]))
+        .attr('y', (d) => y(d[this.variableColumnName]))
         .attr('rx', 4)
         .attr('ry', 4)
         .attr('width', x.bandwidth())
@@ -147,10 +151,15 @@ export class HeatMapComponent implements OnInit {
   private checkInputs(): void {
     this.description = this.description ? this.description : null;
     this.title = this.title ? this.title : null;
+    console.log(this.title);
+
     this.url = this.url ? this.url : 'https://raw.githubusercontent.com/diveshpanwar/d3-graph-data/master/heat-map.csv';
     this.margin = this.margin ? this.margin : { top: 80, right: 25, bottom: 30, left: 40 };
     this.width = this.width ? this.width : 450 - this.margin.left - this.margin.right;
     this.height = this.height ? this.height : 450 - this.margin.top - this.margin.bottom;
+    this.groupColumnName = this.groupColumnName ? this.groupColumnName : 'group';
+    this.variableColumnName = this.variableColumnName ? this.variableColumnName : 'variable';
+    this.valueColumnName = this.valueColumnName ? this.valueColumnName : 'value';
   }
 
 }
