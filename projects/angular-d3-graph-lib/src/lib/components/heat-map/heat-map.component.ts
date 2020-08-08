@@ -19,6 +19,11 @@ export class HeatMapComponent implements OnInit {
   @Input() groupColumnName: string;
   @Input() variableColumnName: string;
   @Input() valueColumnName: string;
+  @Input() xlow: number;
+  @Input() xhigh: number;
+  @Input() ylow: number;
+  @Input() yhigh: number;
+  @Input() tooltipLabel: string;
   svg = null;
 
   ngOnInit(): void {
@@ -43,7 +48,7 @@ export class HeatMapComponent implements OnInit {
 
       // Build X scales and axis:
       const x = d3.scaleBand()
-        .range([0, this.width])
+        .range([this.xlow, this.xhigh])
         .domain(myGroups)
         .padding(0.05);
       this.svg.append('g')
@@ -54,7 +59,7 @@ export class HeatMapComponent implements OnInit {
 
       // Build Y scales and axis:
       const y = d3.scaleBand()
-        .range([this.height, 0])
+        .range([this.ylow, this.yhigh])
         .domain(myVars)
         .padding(0.05);
       this.svg.append('g')
@@ -89,9 +94,10 @@ export class HeatMapComponent implements OnInit {
       };
 
       const valueColumn = this.valueColumnName;
+      const tooltipLabel = this.tooltipLabel;
       const mousemove = function (d) {
         tooltip
-          .html('Value: ' + d[valueColumn])
+          .html(tooltipLabel + ': ' + d[valueColumn])
           .style('left', (d3.mouse(this)[0] + 70) + 'px')
           .style('top', (d3.mouse(this)[1]) + 'px');
       };
@@ -160,6 +166,11 @@ export class HeatMapComponent implements OnInit {
     this.groupColumnName = this.groupColumnName ? this.groupColumnName : 'group';
     this.variableColumnName = this.variableColumnName ? this.variableColumnName : 'variable';
     this.valueColumnName = this.valueColumnName ? this.valueColumnName : 'value';
+    this.xlow = this.xlow ? this.xlow : 0;
+    this.xhigh = this.xhigh ? this.xhigh : this.width;
+    this.ylow = this.ylow ? this.ylow : this.height;
+    this.yhigh = this.yhigh ? this.yhigh : 0;
+    this.tooltipLabel = this.tooltipLabel ? this.tooltipLabel : 'Value';
   }
 
 }

@@ -64,7 +64,8 @@
               "projects/angular-d3-graph-test/src/assets"
             ],
             "styles": [
-              "projects/angular-d3-graph-test/src/styles.css"
+              "projects/angular-d3-graph-test/src/styles.css",
+              "projects/angular-d3-graph-lib/src/styles.css"
             ],
             "scripts": []
           },

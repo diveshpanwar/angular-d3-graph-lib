@@ -17,6 +17,10 @@ export class BarChartComponent implements OnInit, AfterContentInit {
   @Input() barColor: string;
   @Input() keyColumnName: string;
   @Input() valueColumnName: string;
+  @Input() xlow: number;
+  @Input() xhigh: number;
+  @Input() ylow: number;
+  @Input() yhigh: number;
 
   svg = null;
 
@@ -42,7 +46,7 @@ export class BarChartComponent implements OnInit, AfterContentInit {
 
       // X axis
       const x = d3.scaleBand()
-        .range([0, this.width])
+        .range([this.xlow, this.xhigh])
         .domain(data.map((d) => d[this.keyColumnName]))
         .padding(0.2);
       this.svg.append('g')
@@ -54,7 +58,7 @@ export class BarChartComponent implements OnInit, AfterContentInit {
 
       // Add Y axis
       const y = d3.scaleLinear()
-        .domain([0, 13000])
+        .domain([this.ylow, this.yhigh])
         .range([this.height, 0]);
       this.svg.append('g')
         .call(d3.axisLeft(y));
@@ -107,6 +111,10 @@ export class BarChartComponent implements OnInit, AfterContentInit {
     this.barColor = this.barColor ? this.barColor : '#69b3a2';
     this.keyColumnName = this.keyColumnName ? this.keyColumnName : 'Country';
     this.valueColumnName = this.valueColumnName ? this.valueColumnName : 'Value';
+    this.xlow = this.xlow ? this.xlow : 0;
+    this.xhigh = this.xhigh ? this.xhigh : this.width;
+    this.ylow = this.ylow ? this.ylow : 0;
+    this.yhigh = this.yhigh ? this.yhigh : 13000;
   }
 
 }

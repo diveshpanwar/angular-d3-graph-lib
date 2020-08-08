@@ -1,0 +1,22 @@
+.bubble-chart-title {
+  color: #333;
+  font-weight: bold;
+}
+
+.bubble-chart-subtitle {
+  color: #333;
+  font-weight: bold;
+}
+
+.bubbles {
+  stroke-width: 2px;
+  stroke: white;
+}
+
+.bubbles:hover {
+  stroke: black;
+}
+
+.text-center {
+    text-align: center;
+}
