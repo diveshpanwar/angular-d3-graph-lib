@@ -1,6 +1,6 @@
 {
   "name": "angular-d3-graphs",
-  "version": "0.0.8",
+  "version": "0.0.10",
   "peerDependencies": {
     "@angular/common": "^10.0.6",
     "@angular/core": "^10.0.6"
@@ -8,5 +8,29 @@
   "dependencies": {
     "tslib": "^2.0.0"
   },
-  "keywords": ["Angular D3 Graphs", "D3 Graphs Angular", "Angular Graphs", "bar chart angular", "heat map angular", "pie chart angular"]
+  "keywords": [
+    "Angular D3 Graphs",
+    "D3 Graphs Angular",
+    "Angular Graphs",
+    "bar chart angular",
+    "heat map angular",
+    "pie chart angular",
+    "density chart angular"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/diveshpanwar/angular-d3-graph-lib.git"
+  },
+  "contributors": [
+    {
+      "name": "Divesh Panwar",
+      "email": "divesh.panwar@gmail.com",
+      "url": "https://www.linkedin.com/in/divesh-panwar-44272685/"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/diveshpanwar/angular-d3-graph-lib/issues",
+    "email": "divesh.panwar@gmail.com"
+  },
+  "license": "MIT"
 }
